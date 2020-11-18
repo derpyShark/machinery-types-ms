@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: machinery-types-db-container
+  name: machinery-types-db-container
+spec:
+  ports:
+  - name: "5435"
+    port: 5435
+    targetPort: 5435
+  selector:
+    io.kompose.service: machinery-types-db-container
+status:
+  loadBalancer: {}

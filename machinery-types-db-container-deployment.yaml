@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: machinery-types-db-container
+  name: machinery-types-db-container
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: machinery-types-db-container
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: machinery-types-db-container
+    spec:
+      containers:
+      - args:
+        - -p
+        - "5435"
+        env:
+        - name: POSTGRES_DB
+          value: machinery_types_db
+        - name: POSTGRES_PASSWORD
+          value: root
+        - name: POSTGRES_USER
+          value: postgres
+        image: postgres
+        imagePullPolicy: ""
+        name: machinery-types-db-container
+        ports:
+        - containerPort: 5435
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}
